@@ -1,13 +1,157 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+
 <head>
-  <meta charset="utf-8">
-  <title>TollCalcAngular</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <meta charset="utf-8" />
+  <title>Kalkulator putarina u Srbiji</title>
+  <meta name="description" content="Izračunajte cenu autoputa, kilometražu i lokacije naplatnih rampi na mapi." />
+  <meta name="keywords"
+    content="putarina, putarine, autoput, cena putarine, kalkulator putarine, mapa puteva, Srbija, Balkan, toll calculator, toll roads" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta property="og:title" content="Putarine - Kalkulator" />
+  <meta property="og:description" content="Izračunajte cenu putarine u Srbiji." />
+  <meta property="og:image" content="https://www.putarina.com/assets/preview.png" />
+  <meta property="og:url" content="https://www.putarina.com" />
+  <meta property="og:type" content="website" />
+
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <link rel="shortcut icon" href="assets/favicon.ico" />
+
+  <link rel="stylesheet" href="styles.css">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" />
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.3.2/css/flag-icons.min.css" />
 </head>
+
 <body>
-  <app-root></app-root>
+  <div class="container-fluid g-0">
+    <div class="d-flex flex-row vh-100">
+      <!-- Sidebar -->
+      <div id="sidebar-container" class="bg-body-tertiary d-flex flex-column" style="width: auto">
+        <!-- Top nav -->
+        <nav class="nav flex-column" aria-label="Top navigation">
+          <a class="nav-link active py-3 border-bottom" data-bs-toggle="offcanvas" href="#calc">
+            <span class="icon">
+              <i class="bi bi-calculator"></i>
+            </span>
+          </a>
+          <a class="nav-link active py-3 border-bottom" data-bs-toggle="offcanvas" href="#settings">
+            <span class="icon">
+              <i class="bi bi-gear"></i>
+            </span>
+          </a>
+          <a class="nav-link active py-3 border-bottom" data-bs-toggle="offcanvas" href="#info">
+            <span class="icon">
+              <i class="bi bi-info-circle"></i>
+            </span>
+          </a>
+        </nav>
+
+        <!-- Bottom nav -->
+        <nav class="nav flex-column mt-auto" aria-label="Bottom navigation">
+          <div class="language-dropdown">
+            <a href="#" class="nav-link active py-3 border-top" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fi fi-rs"></i>
+            </a>
+            <ul class="dropdown-menu p-0">
+              <li>
+                <a class="dropdown-item border-bottom p-2" href="#" data-lang="sr">
+                  <i class="fi fi-rs me-2"></i>Srpski
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item p-2" href="#" data-lang="en">
+                  <i class="fi fi-gb me-2"></i>English
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+
+      <!-- Main / Map -->
+      <main class="col p-0 position-relative flex-grow-1">
+
+        <div id="calc" class="col-lg-3 offcanvas offcanvas-start d-lg-block show" data-bs-scroll="true"
+          data-bs-backdrop="false" tabindex="-1" aria-labelledby="offcanvasCalculatorLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasCalculatorLabel">Kalkulator putarine</h5>
+          </div>
+          <div class="px-2 py-3">
+            <div class="input-group">
+              <input type="text" id="startAddress" name="address" class="form-control"
+                placeholder="Pronađite adresu polaska, ili kliknite na mapi" />
+              <button id="locationBtn" class="btn btn-outline-secondary" title="Trenutna lokacija" type="button">
+                <a href="#" class="nav-link active" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="bi bi-crosshair"></i>
+                </a>
+              </button>
+            </div>
+          </div>
+
+          <div class="px-2">
+            <input type="text" id="endAddress" name="address" class="form-control"
+              placeholder="Odaberite destinaciju" />
+          </div>
+        </div>
+
+        <div id="settings" class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false"
+          tabindex="-1" aria-labelledby="offcanvasSettingsLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasSettingsLabel">Podešavanja</h5>
+          </div>
+          <div class="offcanvas-body">
+            <div class="dropdown">
+              <label for="themeDropdown" class="form-label">Tema</label>
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="themeDropdown"
+                data-bs-toggle="dropdown">
+                <i class="bi bi-circle-half me-2"></i>
+                <span id="theme-dropdown-label">Svetla</span>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="themeDropdown">
+                <li><a class="dropdown-item d-flex align-items-center" href="#" data-bs-theme-value="light"><i
+                      class="bi bi-sun-fill me-2"></i>Svetla</a></li>
+                <li><a class="dropdown-item d-flex align-items-center" href="#" data-bs-theme-value="dark"><i
+                      class="bi bi-moon-stars-fill me-2"></i>Tamna</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div id="info" class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
+          aria-labelledby="offcanvasInfoLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasInfoLabel">O stranici</h5>
+          </div>
+          <div class="offcanvas-body">
+            <p>Putarina.com je jednostavan alat za izračunavanje putarine u Srbiji. Kreiran sa ciljem da
+              pruži brzu i jednostavnu informaciju o troškovima putarine, sajt prikazuje rute i cene putarine
+              na interaktivnoj mapi.</p>
+            <h6 class="mt-4">Korišćenje sajta je intuitivno:</h6>
+            <ul>
+              <li>Izaberite polaznu i odredišnu tačku.</li>
+              <li>Odmah dobijate izračunatu cenu putarine.</li>
+            </ul>
+            <p class="mt-4">Srećan put!</p>
+          </div>
+        </div>
+
+        <div id="map"></div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS (bundle includes Popper) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Leaflet JS (if your app uses it in app.js you may already import it there; included here just in case) -->
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
 </body>
+
 </html>
