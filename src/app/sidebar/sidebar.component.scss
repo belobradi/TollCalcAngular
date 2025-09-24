@@ -3,13 +3,7 @@
 }
 
 :host.toll-sidebar {
-  display: flex;
-  flex-direction: column;
   min-width: 400px;
   height: 100%;
-  padding: 1rem 0.75rem;
-  background: var(--bs-body-bg);
-  color: var(--bs-body-color);
   border-right: 1px solid var(--bs-border-color);
-  overflow-y: auto;
 }
