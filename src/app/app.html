@@ -1,67 +1,82 @@
-<div class="container-fluid g-0">
-  <div class="d-flex flex-row vh-100">
-    <div id="sidebar-container" class="bg-body-tertiary d-flex flex-column" style="width: auto;">
-      <nav class="nav flex-column" aria-label="Top navigation">
-        <a class="nav-link py-3 border-bottom" data-bs-toggle="offcanvas" href="#settings"><i
-            class="bi bi-gear"></i></a>
-        <a class="nav-link py-3 border-bottom" data-bs-toggle="offcanvas" href="#info"><i
-            class="bi bi-info-circle"></i></a>
-      </nav>
-      <nav class="nav flex-column mt-auto" aria-label="Bottom navigation">
-        <div class="language-dropdown">
-          <a href="#" class="nav-link py-3 border-top" data-bs-toggle="dropdown" aria-expanded="false"><i
-              class="fi fi-rs"></i></a>
-          <ul class="dropdown-menu p-0">
-            <li><a class="dropdown-item border-bottom p-2" href="#" data-lang="sr"><i
-                  class="fi fi-rs me-2"></i>Srpski</a></li>
-            <li><a class="dropdown-item p-2" href="#" data-lang="en"><i class="fi fi-gb me-2"></i>English</a></li>
-          </ul>
+<div class="d-flex flex-row vh-100">
+  <div id="sidebar-container" class="d-flex flex-column bg-body-tertiary" style="width: auto;">
+    <nav class="nav flex-column" aria-label="Top navigation">
+      <a class="nav-link py-3 border-bottom" data-bs-toggle="offcanvas" href="#settings"><i class="bi bi-gear"></i></a>
+      <a class="nav-link py-3 border-bottom" data-bs-toggle="offcanvas" href="#info"><i
+          class="bi bi-info-circle"></i></a>
+    </nav>
+    <nav class="nav flex-column mt-auto" aria-label="Bottom navigation">
+      <div class="language-dropdown">
+        <a href="#" class="nav-link py-3 border-top" data-bs-toggle="dropdown" aria-expanded="false"><i
+            class="fi fi-rs"></i></a>
+        <ul class="dropdown-menu p-0">
+          <li><a class="dropdown-item border-bottom p-2" href="#" data-lang="sr"><i class="fi fi-rs me-2"></i>Srpski</a>
+          </li>
+          <li><a class="dropdown-item p-2" href="#" data-lang="en"><i class="fi fi-gb me-2"></i>English</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+  <div id="main-container" class="position-relative">
+    <div id="calc-sidebar">
+      <div class="p-3">
+        <h5 class="mb-0">Kalkulator putarine</h5>
+      </div>
+      <div class="p-3">
+        <div class="input-group pb-3">
+          <input type="text" id="startAddress" class="form-control"
+            placeholder="Pretražite adresu polaska, ili kliknite na mapi" />
+          <button id="locationBtn" class="btn btn-outline-secondary" type="button" title="Trenutna lokacija">
+            <i class="bi bi-crosshair"></i>
+          </button>
         </div>
-      </nav>
+        <input type="text" id="endAddress" class="form-control" placeholder="Odaberite destinaciju" />
+      </div>
     </div>
-    <main class="col p-0 position-relative flex-grow-1">
-      <app-sidebar id="calc"></app-sidebar>
-      <div id="settings" class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
-        aria-labelledby="offcanvasSettingsLabel">
-        <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="offcanvasSettingsLabel">Podešavanja</h5>
-          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-          <div class="dropdown">
-            <label for="themeDropdown" class="form-label">Tema</label>
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="themeDropdown"
-              data-bs-toggle="dropdown">
-              <i class="bi bi-circle-half me-2"></i><span id="theme-dropdown-label">Svetla</span>
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="themeDropdown">
-              <li><a class="dropdown-item d-flex align-items-center" href="#" data-bs-theme-value="light"><i
-                    class="bi bi-sun-fill me-2"></i>Svetla</a></li>
-              <li><a class="dropdown-item d-flex align-items-center" href="#" data-bs-theme-value="dark"><i
-                    class="bi bi-moon-stars-fill me-2"></i>Tamna</a></li>
-            </ul>
-          </div>
-        </div>
+
+    <div id="settings" class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
+      aria-labelledby="offcanvasSettingsLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasSettingsLabel">Podešavanja</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
-      <div id="info" class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
-        aria-labelledby="offcanvasInfoLabel">
-        <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="offcanvasInfoLabel">O stranici</h5>
-          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-          <p>Putarina.com je jednostavan alat za izračunavanje putarine u Srbiji. Kreiran sa ciljem da pruži brzu i
-            jednostavnu informaciju o troškovima putarine, sajt prikazuje rute i cene putarine na interaktivnoj mapi.
-          </p>
-          <h6 class="mt-4">Korišćenje sajta je intuitivno:</h6>
-          <ul>
-            <li>Izaberite polaznu i odredišnu tačku.</li>
-            <li>Odmah dobijate izračunatu cenu putarine.</li>
+      <div class="offcanvas-body">
+        <div class="dropdown">
+          <label for="themeDropdown" class="form-label">Tema</label>
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="themeDropdown" data-bs-toggle="dropdown">
+            <i class="bi bi-circle-half me-2"></i><span id="theme-dropdown-label">Svetla</span>
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="themeDropdown">
+            <li><a class="dropdown-item d-flex align-items-center" href="#" data-bs-theme-value="light"><i
+                  class="bi bi-sun-fill me-2"></i>Svetla</a></li>
+            <li><a class="dropdown-item d-flex align-items-center" href="#" data-bs-theme-value="dark"><i
+                  class="bi bi-moon-stars-fill me-2"></i>Tamna</a></li>
           </ul>
-          <p class="mt-4">Srećan put!</p>
         </div>
       </div>
-      <div id="map" class="w-100 h-100"></div>
-    </main>
+    </div>
+
+    <div id="info" class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
+      aria-labelledby="offcanvasInfoLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasInfoLabel">O stranici</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <p>Putarina.com je jednostavan alat za izračunavanje putarine u Srbiji. Kreiran sa ciljem da pruži brzu i
+          jednostavnu informaciju o troškovima putarine, sajt prikazuje rute i cene putarine na interaktivnoj mapi.
+        </p>
+        <h6 class="mt-4">Korišćenje sajta je intuitivno:</h6>
+        <ul>
+          <li>Izaberite polaznu i odredišnu tačku.</li>
+          <li>Odmah dobijate izračunatu cenu putarine.</li>
+        </ul>
+        <p class="mt-4">Srećan put!</p>
+      </div>
+    </div>
+
+    <div id="map" class="w-100 flex-grow-1"></div>
+
   </div>
 </div>

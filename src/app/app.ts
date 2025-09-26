@@ -1,11 +1,10 @@
 import { Component, signal } from '@angular/core';
-import { SidebarComponent } from './sidebar/sidebar.component';
 
 @Component({
   selector: 'app-root',
-  imports: [SidebarComponent],
+  standalone: true,
   templateUrl: './app.html',
-  styleUrl: './app.scss'
+  styleUrls: ['./app.scss']
 })
 export class App {
   protected readonly title = signal('TollCalcAngular');

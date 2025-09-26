@@ -1,3 +1,7 @@
+:host {
+    position: absolute;
+}
+
 #sidebar-container {
   z-index: 9999;
 }
@@ -8,4 +12,10 @@
 
 .language-dropdown .dropdown-menu {
   min-width: auto;
+}
+
+#calc-sidebar {
+  min-width: 400px;
+  height: 100%;
+  border-right: 1px solid var(--bs-border-color);
 }
