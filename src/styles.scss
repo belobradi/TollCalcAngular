@@ -2,9 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 /* Ensure full height cascade */
 html, body, app-root {
-  width: 100%;
   margin: 0;
   padding: 0;
 }

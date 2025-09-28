@@ -16,40 +16,44 @@ import { MapComponent } from './map/map.component';
 })
 export class App implements OnInit {
   protected readonly title = signal('TollCalcAngular');
-  mainContainer = {};
-  narrowSidebar = {};
+  appContainer = {};
+  mainSidebar = {};
   calcSidebar = {};
   content = {};
+
+  isDesktop = false;
 
   constructor(private readonly breakpointObserver: BreakpointObserver) {}
 
   ngOnInit() {
     this.breakpointObserver.observe(['(min-width: 1000px)'])
       .subscribe(result => {
-        const isMobile: boolean = !result.matches;
-        const isDesktop: boolean = result.matches;
-
-        this.mainContainer = {
+        this.isDesktop = result.matches;
+        const isMobile = !this.isDesktop;
+        
+        this.appContainer = {
           'd-flex': true,
-          'vh-100': true
+          'flex-column-reverse': isMobile,
+          'vh-100': true,
+          'vw-100': true
         };
-        this.narrowSidebar = {
+        this.mainSidebar = {
           'd-flex': true,
           'flex-column': true,
           'bg-body-tertiary': true,
-          'd-none': isMobile
+          'd-none': isMobile,
+          'tw-z-[9999]': true
         };
         this.content = {
           'd-flex': true,
-          'flex-row': isDesktop,
+          'flex-row': this.isDesktop,
           'flex-column': isMobile,
           'flex-grow-1': true,
           'flex-column-reverse': isMobile
         };
         this.calcSidebar = {
           'position-relative': true,
-          'tw-h-64': isMobile,
-          'tw-min-w-[410px]': true
+          'tw-min-w-[400px]': this.isDesktop
         };
       });
   }

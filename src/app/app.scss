@@ -2,21 +2,12 @@
     position: absolute;
 }
 
-#narrow-sidebar {
-  z-index: 9999;
-}
-
 .offcanvas {
   position: absolute;
 }
 
-.language-dropdown .dropdown-menu {
+.dropdown-menu {
   min-width: auto;
-}
-
-#calc-sidebar {
-  border-right: 1px solid var(--bs-border-color);
-  min-width: 400px;
 }
 
 .nav-link {
