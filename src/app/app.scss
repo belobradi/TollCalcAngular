@@ -2,7 +2,7 @@
     position: absolute;
 }
 
-#sidebar-container {
+#narrow-sidebar {
   z-index: 9999;
 }
 
@@ -15,7 +15,18 @@
 }
 
 #calc-sidebar {
-  min-width: 400px;
-  height: 100%;
   border-right: 1px solid var(--bs-border-color);
+  min-width: 400px;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--bs-body-color);
+  text-decoration: none;
+}
+
+.nav-link:hover {
+  background-color: var(--bs-secondary-bg);
 }
