@@ -9,22 +9,26 @@ import * as L from 'leaflet'; // Import Leaflet
 
 export class MapComponent implements AfterViewInit {
   private map!: L.Map;
+  showInfoText = true;
 
   constructor() { }
 
-  // Use AfterViewInit to ensure the <div id="map-container"> is in the DOM
   ngAfterViewInit(): void {
     this.initMap();
   }
 
+  toggleInfoText(): void {
+    this.showInfoText = !this.showInfoText;
+  }
+
   private initMap(): void {
-    // Initialize the map on the 'map-container' div
     this.map = L.map('map-container', { zoomControl: false }).setView([44.8, 20.5], 7);
     L.control.zoom({ position: 'bottomright' }).addTo(this.map);
 
-    const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    const tiles = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
       maxZoom: 19,
-      attribution: '&copy; OpenStreetMap contributors'
+      attribution: '&copy; OpenStreetMap contributors',
+      className: 'map-tiles'
     }).addTo(this.map);
 
     tiles.on('tileerror', () => {

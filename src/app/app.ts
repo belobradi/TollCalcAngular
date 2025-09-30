@@ -44,13 +44,6 @@ export class App implements OnInit {
           'd-none': isMobile,
           'tw-z-[9999]': true
         };
-        this.content = {
-          'd-flex': true,
-          'flex-row': this.isDesktop,
-          'flex-column': isMobile,
-          'flex-grow-1': true,
-          'flex-column-reverse': isMobile
-        };
         this.calcSidebar = {
           'position-relative': true,
           'tw-min-w-[400px]': this.isDesktop

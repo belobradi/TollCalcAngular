@@ -23,7 +23,6 @@
 
   <div id="calc-sidebar" [ngClass]="calcSidebar">
     <div id="calculator">
-
       @if (isDesktop) {
       <div class="p-3">
         <h5 class="mb-0">Kalkulator putarine</h5>
@@ -54,10 +53,16 @@
             <i class="bi bi-circle-half me-2"></i><span id="theme-dropdown-label">Svetla</span>
           </button>
           <ul class="dropdown-menu" aria-labelledby="themeDropdown">
-            <li><a class="dropdown-item d-flex align-items-center" href="#" data-bs-theme-value="light"><i
-                  class="bi bi-sun-fill me-2"></i>Svetla</a></li>
-            <li><a class="dropdown-item d-flex align-items-center" href="#" data-bs-theme-value="dark"><i
-                  class="bi bi-moon-stars-fill me-2"></i>Tamna</a></li>
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="#" data-bs-theme-value="light">
+                <i class="bi bi-sun-fill me-2"></i>Svetla
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="#" data-bs-theme-value="dark">
+                <i class="bi bi-moon-stars-fill me-2"></i>Tamna
+              </a>
+            </li>
           </ul>
         </div>
       </div>

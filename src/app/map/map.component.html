@@ -1,1 +1,18 @@
-<div id="map-container" class="flex-grow-1"></div>
+<div id="map-container" class="flex-grow-1 position-relative">
+    <div class="d-flex position-absolute tw-top-3 tw-right-3 tw-z-[1000]">
+        @if (showInfoText) {
+        <p class="p-2 me-1 tw-max-w-[300px] bg-body rounded-2 ms-2">Lorem ipsum dolor sit amet consectetur, adipisicing
+            elit.
+            Eaque aut consectetur esse ea earum amet ipsum, molestiae, mollitia aliquam quo repellat magnam id odit!
+            Aliquid doloribus ad sed quis cupiditate.</p>
+        }
+        <button type="button" class="bg-transparent border-0 align-self-start" (click)="toggleInfoText()"
+            [title]="showInfoText ? 'Sakrij informacije' : 'Prikaži informacije'">
+            @if (showInfoText) {
+            <i class="bi bi-dash-square-fill fs-5 text-dark"></i>
+            } @else {
+            <i class="bi bi-plus-square-fill fs-5 text-dark"></i>
+            }
+        </button>
+    </div>
+</div>
