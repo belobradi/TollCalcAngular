@@ -4,7 +4,7 @@ interface SearchResult {
   lon: string;
 }
 
-export class MapSearchService {
+export class AddressSearchService {
   private readonly input: HTMLInputElement;
   private readonly dropdown: HTMLElement;
   private searchResults: SearchResult[] = [];

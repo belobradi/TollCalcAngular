@@ -1,19 +1,19 @@
 import { Component, AfterViewInit, OnDestroy } from '@angular/core';
-import { MapSearchService } from '../services/map-search.service';
+import { AddressSearchService } from '../services/address-search.service';
 
 @Component({
   selector: 'app-map-search',
   standalone: true,
-  templateUrl: './map-search.component.html'
+  templateUrl: './address-search.component.html'
 })
 
-export class MapSearchComponent implements AfterViewInit, OnDestroy {
-  private startAddressSearcher!: MapSearchService;
-  private endAddressSearcher!: MapSearchService;
+export class AddressSearchComponent implements AfterViewInit, OnDestroy {
+  private startAddressSearcher!: AddressSearchService;
+  private endAddressSearcher!: AddressSearchService;
 
   ngAfterViewInit(): void {
-    this.startAddressSearcher = new MapSearchService('startAddress', 'startAddressDropdownSearch');
-    this.endAddressSearcher = new MapSearchService('endAddress', 'endAddressDropdownSearch');
+    this.startAddressSearcher = new AddressSearchService('startAddress', 'startAddressDropdownSearch');
+    this.endAddressSearcher = new AddressSearchService('endAddress', 'endAddressDropdownSearch');
     
     this.setupAddressListeners();
   }

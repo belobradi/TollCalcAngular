@@ -2,7 +2,7 @@ import { Component, signal, OnInit } from '@angular/core';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { CommonModule } from '@angular/common';
 import { MapComponent } from './components/map.component';
-import { MapSearchComponent } from './components/map-search.component';
+import { AddressSearchComponent } from './components/address-search.component';
 
 
 @Component({
@@ -11,7 +11,7 @@ import { MapSearchComponent } from './components/map-search.component';
   imports: [
     CommonModule,
     MapComponent,
-    MapSearchComponent
+    AddressSearchComponent
   ],
   templateUrl: './app.html',
   styleUrls: ['./app.scss']
