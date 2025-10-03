@@ -1,5 +1,5 @@
 import { Component, AfterViewInit } from '@angular/core';
-import * as L from 'leaflet'; // Import Leaflet
+import * as L from 'leaflet';
 
 @Component({
   selector: 'app-map',
@@ -7,20 +7,18 @@ import * as L from 'leaflet'; // Import Leaflet
   templateUrl: './map.component.html'
 })
 
-export class MapComponent implements AfterViewInit {
-  private map!: L.Map;
+export class MapComponent implements AfterViewInit {  
   showInfoText = true;
-
-  constructor() { }
-
-  ngAfterViewInit(): void {
-    this.initMap();
-  }
 
   toggleInfoText(): void {
     this.showInfoText = !this.showInfoText;
   }
 
+  ngAfterViewInit(): void {
+    this.initMap();
+  }
+
+  private map!: L.Map;
   private initMap(): void {
     this.map = L.map('map-container', { zoomControl: false }).setView([44.8, 20.5], 7);
     L.control.zoom({ position: 'bottomright' }).addTo(this.map);

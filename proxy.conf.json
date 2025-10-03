@@ -1,0 +1,14 @@
+{
+  "/api": {
+    "target": "https://nominatim.openstreetmap.org",
+    "secure": false,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/api": ""
+    },
+    "headers": {
+      "User-Agent": "TollCalcAngular/1.0",
+      "Referer": "https://nominatim.openstreetmap.org/"
+    }
+  }
+}
